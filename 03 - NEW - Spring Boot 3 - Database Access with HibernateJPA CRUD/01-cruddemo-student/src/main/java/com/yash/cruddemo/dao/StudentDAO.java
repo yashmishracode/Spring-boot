@@ -4,5 +4,6 @@ import com.yash.cruddemo.entity.Student;
 
 public interface StudentDAO {
 	 void save(Student theStudent);
+	 Student findStudent(Integer id);
 
 }

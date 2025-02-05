@@ -11,17 +11,15 @@ import jakarta.persistence.Table;
 @Table(name="student")
 public class Student {
 	
-	//Define Fields
+	// Define Fields
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
-	
 	@Column(name = "first_name")
 	private String firstName;
-	
 	
 	@Column(name = "last_name")
 	private String lastName;
@@ -29,10 +27,11 @@ public class Student {
 	@Column(name = "email")
 	private String email;
 
-	
-	
-	// Define Constructors
-	
+	// No-argument constructor (required by Hibernate)
+	public Student() {
+	}
+
+	// Define parameterized constructor
 	public Student(String firstName, String lastName, String email) {
 		super();
 		this.firstName = firstName;
@@ -40,65 +39,43 @@ public class Student {
 		this.email = email;
 	}
 
-
-
-	
-	
-	// Define getter and setter
+	// Define getter and setter methods
 	
 	public int getId() {
 		return id;
 	}
 
-
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
 
 	public String getFirstName() {
 		return firstName;
 	}
 
-
-
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
-
 
 	public String getLastName() {
 		return lastName;
 	}
 
-
-
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-
 
 	public String getEmail() {
 		return email;
 	}
 
-
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
-	
-	//define toString() method
-	
+	// Define toString() method
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
 	}
-
 }
