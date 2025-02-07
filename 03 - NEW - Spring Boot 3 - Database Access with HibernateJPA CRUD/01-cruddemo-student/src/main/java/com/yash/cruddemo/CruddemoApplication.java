@@ -1,5 +1,7 @@
 package com.yash.cruddemo;
 
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,10 +21,24 @@ public class CruddemoApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner ->{
 //			CreateStudent(studentDAO);	
-			CreateMultipleStudent(studentDAO);
+//			CreateMultipleStudent(studentDAO);
+			QueryForStudent(studentDAO);
+//			ReadStudent(studentDAO);
+//			QueryForStudentByLastName(studentDAO);
 			};
 	}
 	
+//			FOR CREATING MULTIPLE OF USERS AT ONCE
+
+	private void QueryForStudentByLastName(StudentDAO studentDAO) {
+		//GET A LIST OF STUDENT
+		List<Student> theStudents = studentDAO.findByLastName("Mishra");
+		//DISPLAY LIST OF STUDENT
+		for (Student tempStudent:theStudents) {
+			System.out.println(tempStudent);
+		}
+	}
+
 	private void CreateMultipleStudent(StudentDAO studentDAO) {
 		// Create student object
 		System.out.println("Createing new student object");
@@ -36,30 +52,66 @@ public class CruddemoApplication {
 		studentDAO.save(tempStudent1);
 		studentDAO.save(tempStudent2);
 		studentDAO.save(tempStudent3);
-
 	
+	//Displaying id of the student
+		System.out.println("Saved Student.Generate id : "+ tempStudent1.getId());
+		System.out.println("Saved Student.Generate id : "+ tempStudent2.getId());
+		System.out.println("Saved Student.Generate id : "+ tempStudent3.getId());
 
-//	public void CreateStudent(StudentDAO studentDAO) {
-//		//Create Student Object
-//		System.out.println("Createing new student object");
-//		Student tempStudent = new Student("yash", "mishra", "yash@luv2code.com");
+		
+	}
+
+	//     FOR CREAATING SINGLE USER
+
+		public void CreateStudent(StudentDAO studentDAO) {
+			//Create Student Object
+			System.out.println("Createing new student object");
+			Student tempStudent = new Student("yash", "mishra", "yash@luv2code.com");
 //		
 //		// Save the Student object
 //		
-//		System.out.println("Saving the Student");
-//		studentDAO.save(tempStudent);
+			System.out.println("Saving the Student");
+			studentDAO.save(tempStudent);
 		
 		//Displaying id of the student
-		System.out.println("Saved Student.Generate id : "+ tempStudent1.getId());
-		
-		
-		//Retrieve Students Based on id: Primary Key
-		
-		System.out.println("In Retriving Student with ID : " + tempStudent1.getId());
-		Student myStudent = studentDAO.findStudent(tempStudent1.getId());
-		System.out.println("Found thee Student :" + myStudent);
-		
+		System.out.println("Saved Student.Generate id : "+ tempStudent.getId());	
 		
 	}
+		
+		// FOR SEARCHING AND SORTING
+		
+		private void QueryForStudent(StudentDAO studentDAO) {
+			// Searching from database 
+			
+					List<Student> theStudents = studentDAO.findAll();
+					for (Student tempStudent : theStudents) {
+						System.out.println(tempStudent);
+					}
+					
+			
+		}
+		
+		// FOR READING THE USER JUST CREATED
+
+		private void ReadStudent(StudentDAO studentDAO) {
+			//Create Student Object
+			System.out.println("Createing new student object");
+			Student tempStudent = new Student("yash", "mishra", "yash@luv2code.com");
+		
+		// Save the Student object
+		
+			System.out.println("Saving the Student");
+			studentDAO.save(tempStudent);
+		
+		//Displaying id of the student
+		System.out.println("Saved Student.Generate id : "+ tempStudent.getId());
+			
+			//Retrieve Students Based on id: Primary Key
+			
+					System.out.println("In Retriving Student with ID : " + tempStudent.getId());
+					Student myStudent = studentDAO.findStudent(tempStudent.getId());
+					System.out.println("Found thee Student :" + myStudent);
+			
+		}
 
 }
