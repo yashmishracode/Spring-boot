@@ -22,13 +22,33 @@ public class CruddemoApplication {
 		return runner ->{
 //			CreateStudent(studentDAO);	
 //			CreateMultipleStudent(studentDAO);
-			QueryForStudent(studentDAO);
+//			QueryForStudent(studentDAO);
 //			ReadStudent(studentDAO);
 //			QueryForStudentByLastName(studentDAO);
+//			UpdateStrudent(studentDAO);
+			DeleteStudent(studentDAO);
 			};
 	}
 	
 //			FOR CREATING MULTIPLE OF USERS AT ONCE
+
+	private void DeleteStudent(StudentDAO studentDAO) {
+		int studentId=1;
+		System.out.println("Delete Student with id :" + studentId);
+		studentDAO.delete(studentId);
+		
+	}
+
+	private void UpdateStrudent(StudentDAO studentDAO) {
+		int studentId=1;
+		System.out.println("Getting Student wioth Id :"+ studentId);
+		Student myStudent = studentDAO.findStudent(studentId);
+		System.out.println("Updating Student");
+		myStudent.setFirstName("Yash");
+		studentDAO.update(myStudent);
+		System.out.println("Updated Student :" +myStudent);
+		
+	}
 
 	private void QueryForStudentByLastName(StudentDAO studentDAO) {
 		//GET A LIST OF STUDENT
