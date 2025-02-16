@@ -1,5 +1,6 @@
 package com.yash.demo.service;
 
+import com.yash.demo.DAO.EmployeeRepository;
 import com.yash.demo.Entity.Employee;
 import com.yash.demo.dao.EmployeeDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,32 +12,32 @@ import java.util.List;
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
 
-    private EmployeeDAO employeeDAO;
+    private EmployeeRepository employeeRepository;
 
     @Autowired
-    public EmployeeServiceImpl(EmployeeDAO theEmployeeDAO) {
-        employeeDAO = theEmployeeDAO;
+    public EmployeeServiceImpl(EmployeeRepository theEmployeeRepository) {
+        employeeRepository = theEmployeeRepository;
     }
 
     @Override
     public List<Employee> findAll() {
-        return employeeDAO.findAll();
+        return employeeRepository.findAll();
     }
 
     @Override
     public Employee findById(int theId) {
-        return employeeDAO.findById(theId);
+        return employeeRepository.findById(theId);
     }
 
-    @Transactional
+
     @Override
     public Employee save(Employee theEmployee) {
-        return employeeDAO.save(theEmployee);
+        return employeeRepository.save(theEmployee);
     }
 
-    @Transactional
+
     @Override
     public void deleteById(int theId) {
-      employeeDAO.deleteById(theId);
+        employeeRepository.deleteById(theId);
     }
 }
