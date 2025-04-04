@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "ThymeleafdemoApplication",
+            "request": "launch",
+            "mainClass": "ThymeleafdemoApplication",
+            "projectName": "thymeleafdemo"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ThymeleafdemoApplication<thymeleafdemo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.luv2code.springboot.thymeleafdemo.ThymeleafdemoApplication",
+            "projectName": "thymeleafdemo",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
